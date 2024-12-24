@@ -1,0 +1,88 @@
+<c-row>
+    <c-col xs>
+        <c-card class="mb-4">
+            <c-card-body>
+                <c-row>
+                    <c-col xs="12" class="pb-4">
+                        <form [gutter]="3" cForm cRow [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <c-col xs="auto" class="align-content-center">
+                                <label cLabel for="caste" class="mb-0">
+                                    Choose religion
+                                </label>
+                            </c-col>
+                            <c-col xs="auto">
+                                <select cSelect id="religion" formControlName="religionId">
+                                    <option value="null" selected disabled>Select</option>
+                                    <option [value]="religion._id" *ngFor="let religion of religions">{{religion.name}}
+                                    </option>
+                                </select>
+                            </c-col>
+                            <c-col xs="auto" class="align-content-center">
+                                <label cLabel for="caste" class="mb-0">
+                                    Add caste
+                                </label>
+                            </c-col>
+                            <c-col xs="auto">
+                                <input cFormControl id="caste" type="text" formControlName="name" />
+                            </c-col>
+                            <c-col xs="auto">
+                                <c-form-check sizing="xl" switch>
+                                    <input cFormCheckInput type="checkbox" formControlName="active" />
+                                    <label cFormCheckLabel>Active</label>
+                                </c-form-check>
+                            </c-col>
+                            <c-col xs="auto">
+                                <button cButton type="submit">
+                                    Save
+                                </button>
+                            </c-col>
+                        </form>
+                    </c-col>
+                </c-row>
+
+                <c-row>
+                    <c-col [xs]="12">
+                        <div class="tabs-container" #myDiv>
+                            <c-tabs [activeItemKey]="1">
+                              <div class="xxx">
+                                <button (click)="scrollLeft()">.</button>
+                                <div [ngStyle]="{'width.px': divWidth}" (wheel)="onScroll($event)" #scrollContainer class="scroll-container">
+                                  <c-tabs-list variant="underline" class="tabs-list-container">
+                                    <!-- Loop through the tabs array to create buttons dynamically -->
+                                    <button *ngFor="let religion of religions; let i = index" cTab [itemKey]="i">{{ religion.name }}</button>
+                                  </c-tabs-list>
+                                </div>
+                                <button (click)="scrollRight()">.</button>
+                              </div>
+                          
+                              <c-tabs-content>
+                                <!-- Loop through the tabs array to create content dynamically -->
+                                <c-tab-panel *ngFor="let religion of religions; let i = index" class="pt-3 pb-3" [itemKey]="i">
+                                    <c-row>
+                                        <c-col [xs]="3" *ngFor="let caste of castes">
+                                            <c-card class="mb-3">
+                                                <c-card-body class="d-flex justify-content-between">
+                                                    <h6 class="card-title">{{ caste.name }}</h6>
+                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                        <button cButton color="primary" size="sm" (click)="editCaste(caste._id)"><svg cIcon
+                                                                name="cil-pencil"></svg></button>
+                                                        <button cButton color="danger" size="sm" (click)="deleteCaste(caste._id,'')"><svg cIcon name="cil-trash"></svg></button>
+                                                    </div>
+                                                </c-card-body>
+                                            </c-card>
+                                        </c-col>
+                                    </c-row>
+                                </c-tab-panel>
+                              </c-tabs-content>
+                            </c-tabs>
+                          </div>
+                    </c-col>
+                </c-row>
+            </c-card-body>
+        </c-card>
+
+
+
+
+    </c-col>
+</c-row>

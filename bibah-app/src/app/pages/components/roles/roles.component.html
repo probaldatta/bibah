@@ -1,0 +1,7 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-inline">
+    <div class="form-group mb-2">
+        <label for="role" class="sr-only">Role</label>
+        <input id="role" formControlName="name" type="text" class="form-control" placeholder="Enter Role">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form>

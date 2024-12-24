@@ -1,0 +1,86 @@
+<div class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center">
+  <c-container breakpoint="md">
+    <c-row class="justify-content-center">
+      <c-col lg="10" xl="8">
+        <c-card-group>
+          <c-card [ngStyle]="{'minWidth.%': 44}" class="text-white bg-primary py-5">
+            <c-card-body class="text-center">
+              <div>
+                <h1>BIBAH</h1>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                  <button [active]="true" cButton class="mt-3" color="primary" (click)="goToRegister()">
+                    Register Now!
+                  </button>
+              </div>
+            </c-card-body>
+          </c-card>
+          <c-card class="p-4">
+            <c-card-body>
+              <form (ngSubmit)="onSubmit()" cForm [formGroup]="form" cForm novalidate>
+                <h3>Login</h3>
+                <p class="text-body-secondary">Sign In to your account</p>
+                <c-row class="mb-1">
+                  <c-col *ngIf="form.controls['email'] as ctrl" [sm]="12">
+                    <c-input-group class="mb-3">
+                      <span cInputGroupText>
+                        <svg cIcon name="cilUser"></svg>
+                      </span>
+                      <input [valid]="
+                        ctrl.touched && ctrl.valid
+                          ? true
+                          : (submitted || ctrl.touched) && ctrl.invalid
+                          ? false
+                          : undefined
+                      " autocomplete="off" cFormControl formControlName="email" id="email" placeholder="Email" required
+                        type="email" />
+                      <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
+                        <ng-container *ngIf="ctrl.errors as errors">
+                          <div *ngIf="errors?.['required']">Email is required</div>
+                          <div *ngIf="errors?.['email']">
+                            {{ formErrors.email?.email }}
+                          </div>
+                        </ng-container>
+                      </c-form-feedback>
+                    </c-input-group>
+
+                  </c-col>
+                </c-row>
+                <c-row class="mb-1">
+                  <!-- <label [sm]="12" cCol cLabel="col" for="password">Password</label> -->
+                  <c-col *ngIf="form.controls['password'] as ctrl" [sm]="12">
+                    <c-input-group class="mb-4">
+                      <span cInputGroupText>
+                        <svg cIcon name="cilLockLocked"></svg>
+                      </span>
+                      <input [valid]="
+                        ctrl.touched && ctrl.valid
+                          ? true
+                          : (submitted || ctrl.touched) && ctrl.invalid
+                          ? false
+                          : undefined
+                      " autocomplete="new-password" cFormControl formControlName="password" id="password"
+                        placeholder="Password" required type="password" />
+                      <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
+                        <ng-container *ngIf="ctrl.errors as errors">
+                          <div *ngIf="errors?.['required']">Password is required</div>
+                        </ng-container>
+                      </c-form-feedback>
+                    </c-input-group>
+
+                  </c-col>
+                </c-row>
+                <button [disabled]="form.pristine || form.invalid" [tabindex]="'0'" cButton color="primary"
+                  type="submit">
+                  Submit
+                </button>
+              </form>
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>

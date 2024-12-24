@@ -1,0 +1,76 @@
+// Import styles with default layout.
+@import "@coreui/coreui/scss/coreui";
+
+// Import Chart.js custom tooltips styles
+@import "@coreui/chartjs/scss/coreui-chartjs";
+
+// Custom styles for this theme
+@import "scss/theme.scss";
+
+
+
+ul, #myUL {
+    list-style-type: none;
+    padding-left: 20px;
+  }
+  
+  .caret {
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .caret::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  
+  .caret-down::before {
+    transform: rotate(90deg);
+  }
+  
+  .nested {
+    display: none;
+  }
+  
+  .active {
+    display: block;
+  }
+
+  .tabs-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .xx {
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    padding: 0;
+  }
+
+.tabs-list-container{
+  flex-wrap: nowrap;
+}
+  
+.scroll-container {
+  overflow-x: auto; 
+  overflow-y: hidden; 
+  white-space: nowrap; 
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; 
+}
+.xxx{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+
+
+

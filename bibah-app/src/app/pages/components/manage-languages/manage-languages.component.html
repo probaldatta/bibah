@@ -1,0 +1,48 @@
+<c-row>
+    <c-col xs>
+        <c-card class="mb-4">
+            <c-card-body>
+                <c-row >
+                    <c-col xs="12" class="pb-4">
+                        <form [gutter]="3" cForm cRow [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <c-col xs="auto" class="align-content-center">
+                                <label cLabel for="language" class="mb-0">
+                                    Add Language
+                                </label>
+                            </c-col>
+                            <c-col xs="auto">
+                                <input cFormControl id="language"  type="text" formControlName="name" />
+                            </c-col>
+                            <c-col xs="auto">
+                                <c-form-check sizing="xl" switch>
+                                    <input cFormCheckInput type="checkbox" formControlName="active" />
+                                    <label cFormCheckLabel>Active</label>
+                                  </c-form-check>
+                            </c-col>
+                            <c-col xs="auto">
+                                <button cButton type="submit">
+                                    Save
+                                </button>
+                            </c-col>
+                        </form>
+                    </c-col>
+                </c-row>
+            
+                <c-row>
+                    <c-col [xs]="3" *ngFor="let language of languages">
+                        <c-card class="mb-3">
+                            <c-card-body class="d-flex justify-content-between">
+                                <h6 class="card-title">{{ language.name }}</h6>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button cButton color="primary" size="sm" (click)="editLanguage(language._id)"><svg cIcon
+                                            name="cil-pencil"></svg></button>
+                                    <button cButton color="danger" size="sm" (click)="deleteLanguage(language._id)"><svg cIcon name="cil-trash"></svg></button>
+                                </div>
+                            </c-card-body>
+                        </c-card>
+                    </c-col>
+                </c-row>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>

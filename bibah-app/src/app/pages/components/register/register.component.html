@@ -1,0 +1,224 @@
+<div class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center">
+  <c-container breakpoint="md">
+    <c-row class="justify-content-center">
+      <c-col lg="10" xl="8">
+        <c-card-group>
+          <c-card [ngStyle]="{'minWidth.%': 44}" class="text-white bg-primary py-5">
+            <c-card-body class="text-center">
+              <div>
+                <h1>BIBAH</h1>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button [active]="true" cButton class="mt-3" color="primary" (click)="goToLogin()">
+                  Login Now!
+                </button>
+              </div>
+            </c-card-body>
+          </c-card>
+          <c-card class="p-4">
+            <c-card-body>
+              <c-row>
+                <c-col [md]="12">
+                  <form (ngSubmit)="onSubmit()" [formGroup]="form" cForm novalidate>
+                    <c-row class="mb-1">
+                      <!-- <label [sm]="12" cCol cLabel="col" for="firstName">First name</label> -->
+                      <c-col *ngIf="form.controls['firstName'] as ctrl" [sm]="12">
+                        <input [valid]="
+                            ctrl.touched && ctrl.valid
+                              ? true
+                              : (submitted || ctrl.touched) && ctrl.invalid
+                              ? false
+                              : undefined
+                          " autocomplete="off" cFormControl formControlName="firstName" id="firstName"
+                          placeholder="First name" required />
+                        <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
+                          <ng-container *ngIf="ctrl.errors as errors">
+                            <div *ngIf="errors['required']">First Name is required</div>
+                          </ng-container>
+                        </c-form-feedback>
+                      </c-col>
+                    </c-row>
+
+                    <c-row class="mb-1">
+                      <!-- <label [sm]="12" cCol cLabel="col" for="lastName">Last name</label> -->
+                      <c-col *ngIf="form.controls['lastName'] as ctrl" [sm]="12">
+                        <input [valid]="
+                            ctrl.touched && ctrl.valid
+                              ? true
+                              : (submitted || ctrl.touched) && ctrl.invalid
+                              ? false
+                              : undefined
+                          " autocomplete="off" cFormControl formControlName="lastName" id="lastName"
+                          placeholder="Last name" required />
+                        <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
+                          <ng-container *ngIf="ctrl.errors as errors">
+                            <div *ngIf="errors['required']">Last Name is required</div>
+                          </ng-container>
+                        </c-form-feedback>
+                      </c-col>
+                    </c-row>
+
+                    <c-row class="mb-1">
+                      <!-- <label [sm]="12" cCol cLabel="col" for="email">Email</label> -->
+                      <c-col *ngIf="form.controls['email'] as ctrl" [sm]="12">
+                        <input [valid]="
+                            ctrl.touched && ctrl.valid
+                              ? true
+                              : (submitted || ctrl.touched) && ctrl.invalid
+                              ? false
+                              : undefined
+                          " autocomplete="off" cFormControl formControlName="email" id="email" placeholder="Email"
+                          required type="email" />
+                        <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
+                          <ng-container *ngIf="ctrl.errors as errors">
+                            <div *ngIf="errors?.['required']">Email is required</div>
+                            <div *ngIf="errors?.['email']">
+                              {{ formErrors.email?.email }}
+                            </div>
+                          </ng-container>
+                        </c-form-feedback>
+                      </c-col>
+                    </c-row>
+
+                    <c-row class="mb-1">
+                      <c-col [sm]="3">
+                        <!-- Country Code Dropdown -->
+                        <select autocomplete="off" cFormControl formControlName="countryCode" id="countryCode" cSelect>
+                          <option value="" disabled>Select Country Code</option>
+                          <option *ngFor="let code of countryCodes" [value]="code.value">{{ code.label }}</option>
+                        </select>
+                      </c-col>
+                    
+                      <c-col [sm]="9" *ngIf="form.controls['mobile'] as ctrl">
+                        <!-- Mobile Number Input -->
+                        <input 
+                          [valid]="ctrl.touched && ctrl.valid
+                            ? true
+                            : (submitted || ctrl.touched) && ctrl.invalid
+                            ? false
+                            : undefined"
+                          autocomplete="off" cFormControl formControlName="mobile" id="mobile"
+                          placeholder="Mobile Number" type="tel" pattern="^[0-9]{10}$" />
+
+                          <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
+                              <ng-container *ngIf="ctrl.errors as errors">
+                                <div *ngIf="errors?.['required']">
+                                  Mobile Number is required
+                                </div>
+                                <div *ngIf="errors?.['pattern']">
+                                  Please enter a valid mobile number (10 digits). Only numbers are allowed.
+                                </div>
+                              </ng-container>
+                            </c-form-feedback>
+                      </c-col>
+                    
+                      <!-- Single Form Feedback for mobile number field -->
+                      
+                    </c-row>
+
+                    <c-row class="mb-1">
+                      <!-- <label [sm]="12" cCol cLabel="col" for="password">Password</label> -->
+                      <c-col *ngIf="form.controls['password'] as ctrl" [sm]="12">
+                        <input [valid]="
+                            ctrl.touched && ctrl.valid
+                              ? true
+                              : (submitted || ctrl.touched) && ctrl.invalid
+                              ? false
+                              : undefined
+                          " autocomplete="new-password" cFormControl formControlName="password" id="password"
+                          placeholder="Password" required type="password" />
+                        <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
+                          <ng-container *ngIf="ctrl.errors as errors">
+                            <div *ngIf="errors?.['required']">Password is required</div>
+                            <div *ngIf="errors?.['minlength']">
+                              {{ formErrors['password'].minLength }}
+                            </div>
+                            <div *ngIf="errors?.['pattern']">
+                              {{ formErrors['password'].pattern }}
+                            </div>
+                          </ng-container>
+                        </c-form-feedback>
+                      </c-col>
+                    </c-row>
+
+                    <c-row class="mb-1">
+                      <!-- <label [sm]="12" cCol cLabel="col" for="confirmPassword">Confirm password</label> -->
+                      <c-col *ngIf="form.controls['confirmPassword'] as ctrl" [sm]="12">
+                        <input [valid]="
+                            ctrl.touched && ctrl.valid
+                              ? true
+                              : (submitted || ctrl.touched) && ctrl.invalid
+                              ? false
+                              : undefined
+                          " autocomplete="off" cFormControl formControlName="confirmPassword" id="confirmPassword"
+                          placeholder="Confirm password" required type="password" />
+                        <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
+                          <ng-container *ngIf="ctrl.errors as errors">
+                            <div *ngIf="errors?.['passwordMismatch']">
+                              {{ formErrors['confirmPassword'].passwordMismatch }}
+                            </div>
+                            <div *ngIf="errors?.['required']">Confirmation is required</div>
+                          </ng-container>
+                        </c-form-feedback>
+                      </c-col>
+                    </c-row>
+
+                    <c-row class="mb-1">
+                      <c-col *ngIf="form.controls['accept'] as ctrl">
+                        <c-form-check>
+                          <input cFormCheckInput formControlName="accept" id="accept" required type="checkbox" />
+                          <label cFormCheckLabel for="accept">I accept the terms of use</label>
+                          <c-form-feedback *ngIf="submitted && ctrl.invalid" [valid]="false">
+                            <ng-container *ngIf="ctrl.errors as errors">
+                              <div *ngIf="errors['required']">You have to accept our Terms and Conditions</div>
+                            </ng-container>
+                          </c-form-feedback>
+                        </c-form-check>
+                      </c-col>
+                    </c-row>
+                    
+                    <hr />
+                    <button [disabled]="form.pristine || form.invalid" [tabindex]="'0'" cButton
+                      color="primary" type="submit">
+                      Submit
+                    </button>
+                  </form>
+                </c-col>
+                <!-- <c-col [md]="6">
+                  <c-card [ngClass]="{ 'bg-info': form.valid, 'bg-dark': form.invalid}">
+                    <c-card-body class="text-white">
+                      <pre>Value: <code>{{ form.value | json }}</code></pre>
+                      <ul>
+                        <li>Status: {{ form.status }}</li>
+                        <li>Valid: {{ form.valid }}</li>
+                        <li>Pristine: {{ form.pristine }}</li>
+                        <li>Errors: {{ form.errors | json }}</li>
+                      </ul>
+                      <ul>
+                        @for (ctrl of formControls; track ctrl) {
+                        <li>
+                          {{ ctrl }}
+                          <ul>
+                            <li>Invalid: {{ form.controls[ctrl].invalid | json }}</li>
+                            <li>Pristine: {{ form.controls[ctrl].pristine | json }}</li>
+                            <li>Status: {{ form.controls[ctrl].status | json }}</li>
+                            <li>Touched: {{ form.controls[ctrl].touched | json }}</li>
+                            <li>Errors: {{ form.controls[ctrl].errors | json }}</li>
+                          </ul>
+                        </li>
+                        }
+                      </ul>
+                    </c-card-body>
+                  </c-card>
+                </c-col> -->
+              </c-row>
+
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>
